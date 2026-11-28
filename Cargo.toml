@@ -1,0 +1,58 @@
+[workspace]
+resolver = "3"
+members = ["crates/*"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+repository = "https://github.com/codejs/pulse_sync"
+
+[workspace.dependencies]
+pulse-core = { path = "crates/pulse-core" }
+pulse-store = { path = "crates/pulse-store" }
+pulse-fs = { path = "crates/pulse-fs" }
+pulse-api = { path = "crates/pulse-api" }
+
+anyhow = "1.0.105"
+axum = { version = "0.8.9", features = ["ws"] }
+blake3 = "1.8.8"
+clap = { version = "4.6.10", features = ["derive", "env"] }
+data-encoding = "2.11.1"
+directories = "6.0.0"
+ed25519-dalek = "3.0.0"
+fastcdc = "5.0.0"
+getrandom = "0.4.3"
+hex = "0.4.3"
+http-body-util = "0.1.5"
+ignore = "0.4.35"
+mime_guess = "2.0.5"
+notify = "9.0.0"
+notify-debouncer-full = "0.8.0"
+rust-embed = "8.14.0"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+sqlx = { version = "0.9.1", default-features = false, features = ["runtime-tokio", "sqlite", "migrate", "macros"] }
+tempfile = "3.27.0"
+thiserror = "2.0.21"
+tokio = { version = "1.54.1", features = ["full"] }
+tokio-util = "0.7.20"
+tower = { version = "0.5.3", features = ["util"] }
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
+ts-rs = "12.0.1"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.cargo]
+# The release tooling (dist/Homebrew) wants an explicit homepage.
+redundant_homepage = "allow"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+
+# The profile that 'dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"

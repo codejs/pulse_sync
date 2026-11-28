@@ -1,0 +1,55 @@
+[package]
+name = "pulse-sync"
+description = "Peer-to-peer file sync. Installs the `pulsed` daemon with its web UI."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage = "https://github.com/codejs/pulse_sync"
+authors = ["Pulse Sync contributors"]
+readme = "../../README.md"
+publish = false
+
+[[bin]]
+name = "pulsed"
+path = "src/main.rs"
+
+[features]
+# Embed the built web UI (web/dist) into the binary. Run `pnpm --dir web build` first.
+embed-web = ["dep:rust-embed", "dep:mime_guess"]
+
+[dependencies]
+anyhow.workspace = true
+axum.workspace = true
+clap.workspace = true
+directories.workspace = true
+ed25519-dalek.workspace = true
+getrandom.workspace = true
+hex.workspace = true
+mime_guess = { workspace = true, optional = true }
+pulse-api.workspace = true
+pulse-core.workspace = true
+pulse-fs.workspace = true
+pulse-store.workspace = true
+rust-embed = { workspace = true, optional = true }
+tokio.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+
+[lints]
+workspace = true
+
+# Release with dist even though it's not published to crates.io
+# (the embedded web UI needs a pnpm build first).
+[package.metadata.dist]
+dist = true
+features = ["embed-web"]
+
+[package.metadata.wix]
+upgrade-guid = "6A677AFA-E55E-44A0-84B1-B923ECD5EBFA"
+path-guid = "0E529A97-92C9-4EFA-A89D-884A1330DF00"
+license = false
+eula = false

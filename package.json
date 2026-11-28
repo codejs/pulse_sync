@@ -1,0 +1,21 @@
+{
+  "name": "pulse-sync",
+  "private": true,
+  "packageManager": "pnpm@12.18.0",
+  "scripts": {
+    "dev": "just dev",
+    "daemon": "just daemon",
+    "web": "just web",
+    "test": "just test",
+    "lint": "just lint",
+    "fmt": "just fmt",
+    "gen-types": "just gen-types",
+    "build": "just build",
+    "reset-dev": "just reset-dev",
+    "archive": "just archive",
+    "release-plan": "dist plan"
+  },
+  "devDependencies": {
+    "rust-just": "^1.59.0"
+  }
+}

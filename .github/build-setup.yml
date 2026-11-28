@@ -1,0 +1,14 @@
+# Injected by dist into every release build job, before `cargo build`:
+# the binary embeds web/dist, so the UI has to be built first.
+# (Every step needs a `name`: dist 0.34's template fails without one.)
+- name: Install pnpm
+  uses: pnpm/action-setup@v4
+- name: Install Node
+  uses: actions/setup-node@v4
+  with:
+    node-version: 24
+    cache: pnpm
+- name: Build web UI
+  run: |
+    pnpm install --frozen-lockfile
+    pnpm --dir web build
