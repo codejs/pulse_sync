@@ -1,0 +1,23 @@
+[package]
+name = "pulse-core"
+description = "Pure sync domain logic: ids, models, version vectors, chunking."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+blake3.workspace = true
+data-encoding.workspace = true
+fastcdc.workspace = true
+getrandom.workspace = true
+serde.workspace = true
+thiserror.workspace = true
+ts-rs.workspace = true
+
+[dev-dependencies]
+serde_json.workspace = true
+tempfile.workspace = true
+
+[lints]
+workspace = true

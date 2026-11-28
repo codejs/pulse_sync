@@ -1,0 +1,5 @@
+# ts-rs writes TypeScript bindings here when `cargo test` runs.
+[env]
+TS_RS_EXPORT_DIR = { value = "web/src/api/generated", relative = true }
+# Sizes/timestamps fit comfortably in a JS number (< 2^53); avoid bigint in the UI.
+TS_RS_LARGE_INT = "number"
